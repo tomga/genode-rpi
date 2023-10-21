@@ -59,7 +59,7 @@ time_t Timer::_duration() const
 	Device::Clo::access_t const clo = _device.read<Device::Clo>();
 	Device::Cmp::access_t const cmp = _device.read<Device::Cmp>();
 	Device::Cs::access_t  const irq = _device.read<Device::Cs::M1>();
-	time_t d = (irq) ? _last_timeout_duration + (clo - cmp)
+	time_t d = (irq) ? _last_timeout_duration + ((time_t) clo - cmp)
 	                 : clo - (cmp - _last_timeout_duration);
 	return d;
 }
